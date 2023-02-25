@@ -6,7 +6,7 @@ const Searchbar = () => {
     <div className="relative">
       <input
         type="text"
-        className="border py-2 px-4 rounded-md text-base placeholder:text-base outline-primary w-full lg:min-w-[400px]"
+        className="border py-2 px-4 rounded-md text-base placeholder:text-base outline-primary w-full lg:min-w-[300px]"
         placeholder="Search product"
       />
       <MdOutlineSearch className="absolute right-3 top-3 text-text" />

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Tooltip } from 'react-tooltip';
 import { NavLink } from 'react-router-dom';
 
 import menus from '@/constant/menus';
@@ -17,7 +16,7 @@ const BottomBar = () => {
             key={menu.id}
             title={menu.name}
             className="flex-1"
-            data-tooltip-id="cart-icon"
+            data-tooltip-id="tooltip"
             data-tooltip-content={menu.name}
           >
             <NavLink
@@ -31,7 +30,6 @@ const BottomBar = () => {
           </li>
         ))}
       </ul>
-      <Tooltip id="cart-icon" className="!bg-primary" />
     </>
   );
 };

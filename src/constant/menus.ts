@@ -1,19 +1,11 @@
-import { IconType } from 'react-icons';
+import { Menus } from '@/types';
 import {
   AiOutlineHome,
   AiOutlineShop,
-  AiOutlineUser,
-  AiOutlineBarChart,
 } from 'react-icons/ai';
+import { BiCartAlt } from 'react-icons/bi';
 
-type menuTypes = {
-  id: number;
-  name: string;
-  icon: IconType;
-  path: string;
-};
-
-const menus: menuTypes[] = [
+const menus: Menus[] = [
   {
     id: 1,
     name: 'Home',
@@ -28,9 +20,9 @@ const menus: menuTypes[] = [
   },
   {
     id: 3,
-    name: 'Profile',
-    icon: AiOutlineUser,
-    path: '/profile',
+    name: 'Cart',
+    icon: BiCartAlt,
+    path: '/cart',
   },
 ];
 

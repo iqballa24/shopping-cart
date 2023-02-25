@@ -18,7 +18,7 @@ const Button: React.FC<Props> = ({
   isFull,
 }) => {
   const className = [
-    'flex flex-row items-center px-6 py-2 rounded-md transition-all text-sm',
+    'flex flex-row items-center px-6 py-2 rounded-md transition-all text-sm justify-center',
   ];
 
   switch (style) {
@@ -26,7 +26,7 @@ const Button: React.FC<Props> = ({
       className.push('bg-primary text-white hover:bg-primary/90');
       break;
     case 'secondary':
-      className.push('bg-white border text-primary border-primary hover:font-bold');
+      className.push('bg-transparent border text-primary border-primary hover:font-bold');
       break;
     case 'danger':
       className.push('bg-red-400 hover:bg-red-500 text-white');
