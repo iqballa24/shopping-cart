@@ -2,8 +2,8 @@ import React from 'react';
 import { HiOutlineTrash } from 'react-icons/hi';
 import { Counter } from '@/component/UI';
 import { useAppDispatch } from '@/lib/hooks/useRedux';
-import { cartSliceAction } from '@/store/cart';
-import { productSliceAction } from '@/store/products';
+import { removeItemFromCartAction } from '@/store/shared/action';
+import { increaseItemAction, decreaseItemAction } from '@/store/cart/action';
 
 type Props = {
   image: string;
@@ -17,22 +17,21 @@ const CartItem: React.FC<Props> = ({ id, image, title, price, amount }) => {
   const dispatch = useAppDispatch();
 
   const increaseHandler = () => {
-    dispatch(cartSliceAction.increaseItemCart(id));
+    dispatch(increaseItemAction(id));
   };
 
   const decreaseHandler = () => {
-    dispatch(cartSliceAction.decreseItemCart(id));
+    dispatch(decreaseItemAction(id));
   };
 
   const removeItemFromCart = () => {
-    dispatch(cartSliceAction.removeItemFromCart(id));
-    dispatch(productSliceAction.productRemoveFromCart(id));
+    dispatch(removeItemFromCartAction(id));
   };
 
   return (
     <div className="flex flex-row gap-10 p-4 bg-white rounded-md">
-      <div className="w-2/12 md:p-6 bg-white rounded-md">
-        <img src={image} alt="" className="w-full h-full max-h-20" />
+      <div className="w-2/12 md:p-3 bg-white rounded-md">
+        <img src={image} alt="" className="w-full h-full max-h-20 object-scale-down" />
       </div>
       <div className="w-10/12 flex flex-col justify-between h-full">
         <div className="flex flex-col gap-2">

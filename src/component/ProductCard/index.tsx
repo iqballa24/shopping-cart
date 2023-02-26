@@ -1,17 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 import {
   MdOutlineAddShoppingCart,
   MdOutlineRemoveShoppingCart,
 } from 'react-icons/md';
 
-import { Button } from '@/component/UI';
-import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks/useRedux';
-import { cartSliceAction } from '@/store/cart';
-import { productSliceAction } from '@/store/products';
 import { Cart } from '@/types';
-import toast from 'react-hot-toast';
+import { Button } from '@/component/UI';
+import { useAppDispatch } from '@/lib/hooks/useRedux';
+import { addItemToCartAction, removeItemFromCartAction } from '@/store/shared/action';
 
 type Props = {
   id: string;
@@ -33,27 +31,19 @@ const ProductItem: React.FC<Props> = ({
   hasAddToCart,
 }) => {
   const dispatch = useAppDispatch();
-  const { isLoggedIn } = useAppSelector((state) => state.persist.auth);
 
   const addItemToCart = ({ id, title, price, image }: Cart) => {
-    if (!isLoggedIn) {
-      toast.error('You are not logged in. Login first!');
-      return;
-    }
-
-    dispatch(cartSliceAction.addItemToCart({ id, title, price, image }));
-    dispatch(productSliceAction.productAddToCart(id));
+    dispatch(addItemToCartAction({ id, title, price, image }));
   };
 
   const removeItemFromCart = (id: string) => {
-    dispatch(cartSliceAction.removeItemFromCart(id));
-    dispatch(productSliceAction.productRemoveFromCart(id));
+    dispatch(removeItemFromCartAction(id));
   };
 
   return (
     <div className="w-full sm:max-w-[220px] flex flex-col rounded-md border overflow-hidden hover:ring-1 hover:ring-primary transition duration-300 ease-in-out">
       <div className="p-10 bg-white ">
-        <img src={image} alt="" className="w-full h-36" />
+        <img src={image} alt="" className="w-full h-36 object-scale-down" />
       </div>
       <div className="flex flex-col h-full justify-between gap-2 p-4">
         <Link

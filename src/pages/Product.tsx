@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
-import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks/useRedux';
 import { asyncGetProductDetail } from '@/store/products/action';
-import { cartSliceAction } from '@/store/cart';
 import { Cart } from '@/types';
 
 import DetailProduct from '@/component/DetailProduct';
-import { productSliceAction } from '@/store/products';
+import {
+  addItemToCartAction,
+  removeItemFromCartAction,
+} from '@/store/shared/action';
+import { decreaseItemAction, increaseItemAction } from '@/store/cart/action';
 
 const Product = () => {
   const { id } = useParams();
@@ -15,7 +17,6 @@ const Product = () => {
   const { selectedProduct, isLoading } = useAppSelector(
     (state) => state.product
   );
-  const { isLoggedIn } = useAppSelector((state) => state.persist.auth);
 
   useEffect(() => {
     if (id) {
@@ -24,17 +25,19 @@ const Product = () => {
   }, [id]);
 
   const addItemToCart = ({ id, title, price, image }: Cart) => {
-    if (!isLoggedIn) {
-      toast.error('You are not logged in. Login first!');
-      return;
-    }
-    dispatch(cartSliceAction.addItemToCart({ id, title, price, image }));
-    dispatch(productSliceAction.productAddToCart(id));
+    dispatch(addItemToCartAction({ id, title, price, image }));
   };
 
   const removeItemFromCart = (id: string) => {
-    dispatch(cartSliceAction.removeItemFromCart(id));
-    dispatch(productSliceAction.productRemoveFromCart(id));
+    dispatch(removeItemFromCartAction(id));
+  };
+
+  const increaseHandler = (id: string) => {
+    dispatch(increaseItemAction(id));
+  };
+
+  const decreaseHandler = (id: string) => {
+    dispatch(decreaseItemAction(id));
   };
 
   return (
@@ -43,6 +46,8 @@ const Product = () => {
       product={selectedProduct}
       addItemHandler={addItemToCart}
       removeItemHandler={removeItemFromCart}
+      increaseHandler={increaseHandler}
+      decreaseHandler={decreaseHandler}
     />
   );
 };

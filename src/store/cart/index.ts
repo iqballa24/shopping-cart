@@ -29,7 +29,6 @@ const cartSlice = createSlice({
 
       const newCarts = state.item.filter((cart) => cart.id !== payload);
       state.item = newCarts;
-
     },
     increaseItemCart(state, { payload }) {
       const newCarts = state.item.map((cart) => {
@@ -61,6 +60,9 @@ const cartSlice = createSlice({
         state.item = newCarts;
         state.totalItem = state.totalItem - 1;
       }
+    },
+    receiveTotalPrice(state, { payload }) {
+      state.totalPrice = payload;
     },
   },
 });

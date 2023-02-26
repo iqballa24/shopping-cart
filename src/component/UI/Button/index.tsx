@@ -6,6 +6,7 @@ type Props = {
   style: 'primary' | 'secondary' | 'danger';
   isFull?: boolean;
   onClick: () => void;
+  disabled?: boolean;
   children: React.ReactNode;
 };
 
@@ -15,6 +16,7 @@ const Button: React.FC<Props> = ({
   style,
   onClick,
   children,
+  disabled,
   isFull,
 }) => {
   const className = [
@@ -26,13 +28,16 @@ const Button: React.FC<Props> = ({
       className.push('bg-primary text-white hover:bg-primary/90');
       break;
     case 'secondary':
-      className.push('bg-transparent border text-primary border-primary hover:font-bold');
+      className.push(
+        'bg-transparent border text-primary border-primary hover:font-bold'
+      );
       break;
     case 'danger':
       className.push('bg-red-400 hover:bg-red-500 text-white');
   }
 
   isFull && className.push('w-full');
+  disabled && className.push('cursor-not-allowed disabled:opacity-75')
 
   return (
     <button
@@ -40,6 +45,7 @@ const Button: React.FC<Props> = ({
       title={title}
       className={className.join(' ')}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

@@ -8,14 +8,15 @@ import { AiFillStar } from 'react-icons/ai';
 
 import { Tag, Counter, Button } from '@/component/UI';
 import { Cart, ItemProduct } from '@/types';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks/useRedux';
-import { cartSliceAction } from '@/store/cart';
+import { useAppSelector } from '@/lib/hooks/useRedux';
 
 type Props = {
   isLoading: boolean;
   product: ItemProduct;
   addItemHandler: ({ id, title, price }: Cart) => void;
   removeItemHandler: (id: string) => void;
+  increaseHandler: (id: string) => void;
+  decreaseHandler: (id: string) => void;
 };
 
 const DetailProduct: React.FC<Props> = ({
@@ -23,8 +24,9 @@ const DetailProduct: React.FC<Props> = ({
   product,
   addItemHandler,
   removeItemHandler,
+  increaseHandler,
+  decreaseHandler,
 }) => {
-  const dispatch = useAppDispatch();
   const [amount, setAmount] = useState(0);
   const { item, totalItem } = useAppSelector((state) => state.persist.carts);
 
@@ -41,18 +43,11 @@ const DetailProduct: React.FC<Props> = ({
 
   useEffect(() => {
     if (hasAddToCart) {
-      const amount = item.filter((product) => product.id === id)[0]?.amount || 0;
+      const amount =
+        item.filter((product) => product.id === id)[0]?.amount || 0;
       setAmount(amount);
     }
   }, [hasAddToCart, id, totalItem]);
-
-  const increaseHandler = () => {
-    dispatch(cartSliceAction.increaseItemCart(id));
-  };
-
-  const decreaseHandler = () => {
-    dispatch(cartSliceAction.decreseItemCart(id));
-  };
 
   return (
     <section className="flex flex-col md:flex-row gap-10 p-5">
@@ -97,39 +92,47 @@ const DetailProduct: React.FC<Props> = ({
           </div>
         </div>
         <div className="w-full lg:w-4/12">
-          <div className="w-full flex flex-col gap-5 p-5 bg-white rounded-md">
-            <h3 className="text-base md:text-lg font-bold">Add to Cart</h3>
-            {hasAddToCart ? (
-              <>
-                <Counter value={amount} increaseHandler={increaseHandler} decreaseHandler={decreaseHandler}/>
+          {isLoading ? (
+            <Skeleton height={200} />
+          ) : (
+            <div className="w-full flex flex-col gap-5 p-5 bg-white rounded-md">
+              <h3 className="text-base md:text-lg font-bold">Add to Cart</h3>
+              {hasAddToCart ? (
+                <>
+                  <Counter
+                    value={amount}
+                    increaseHandler={() => increaseHandler(id)}
+                    decreaseHandler={() => decreaseHandler(id)}
+                  />
+                  <Button
+                    type="button"
+                    title="remove from cart"
+                    style="secondary"
+                    isFull
+                    onClick={() => removeItemHandler(id)}
+                  >
+                    <div className="flex flex-row items-center gap-2">
+                      <MdOutlineRemoveShoppingCart />
+                      <p>Remove</p>
+                    </div>
+                  </Button>
+                </>
+              ) : (
                 <Button
                   type="button"
-                  title="remove from cart"
-                  style="secondary"
+                  title="add to cart"
+                  style="primary"
                   isFull
-                  onClick={() => removeItemHandler(id)}
+                  onClick={() => addItemHandler({ id, title, price, image })}
                 >
                   <div className="flex flex-row items-center gap-2">
-                    <MdOutlineRemoveShoppingCart />
-                    <p>Remove</p>
+                    <MdOutlineAddShoppingCart />
+                    <p>Add</p>
                   </div>
                 </Button>
-              </>
-            ) : (
-              <Button
-                type="button"
-                title="add to cart"
-                style="primary"
-                isFull
-                onClick={() => addItemHandler({ id, title, price, image })}
-              >
-                <div className="flex flex-row items-center gap-2">
-                  <MdOutlineAddShoppingCart />
-                  <p>Add</p>
-                </div>
-              </Button>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>
