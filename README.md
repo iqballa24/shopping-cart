@@ -43,7 +43,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Live Site](https://talksapp.vercel.app/)
+- Live Site URL: [Live Site](https://tokopaedi-one.vercel.app)
 - demo :
   - username: mor_2314
   - password: 83r5^_
