@@ -22,7 +22,7 @@ const Input: React.FC<Props> = ({ label, form, placeholder, type }) => {
 
   return (
     <div className="relative flex flex-col space-y-3">
-      <label className="font-light text-sm" htmlFor="name">
+      <label className="font-light " htmlFor="name">
         {label}
       </label>
       <input

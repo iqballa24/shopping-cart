@@ -1,75 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Tabsbar } from '@/component/UI';
 import categories from '@/constant/categories';
 import ListProduct from '@/component/ListProduct';
+import { Tabsbar } from '@/component/UI';
+import { useAppSelector } from '@/lib/hooks/useRedux';
+import { ItemProduct } from '@/types';
 
 const Store = () => {
-  const PRODUCTS = [
-    {
-      id: 1,
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 22.3,
-      rating: 4.2,
-      isAddToCart: false,
-      totalSold: 230,
-    },
-    {
-      id: 2,
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 22.3,
-      rating: 4.2,
-      isAddToCart: true,
-      totalSold: 230,
-    },
-    {
-      id: 3,
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 22.3,
-      rating: 4.2,
-      isAddToCart: true,
-      totalSold: 230,
-    },
-    {
-      id: 3,
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 22.3,
-      rating: 4.2,
-      isAddToCart: true,
-      totalSold: 230,
-    },
-    {
-      id: 4,
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 22.3,
-      rating: 4.2,
-      isAddToCart: true,
-      totalSold: 230,
-    },
-    {
-      id: 5,
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 22.3,
-      rating: 4.2,
-      isAddToCart: true,
-      totalSold: 230,
-    },
-    {
-      id: 6,
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 22.3,
-      rating: 4.2,
-      isAddToCart: true,
-      totalSold: 230,
-    },
-  ];
+  const { data, isLoading, filter, category } = useAppSelector(
+    (state) => state.product
+  );
+  const [checked, setChecked] = useState(category === '' ? 'all' : category);
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.value);
+  };
+
+  const products =
+    checked === 'all'
+      ? data
+      : data.filter((item: ItemProduct) => item.category === checked);
+
+  const filterProduct = products.filter((item) =>
+    item.title.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
-    <section className="flex flex-col md:flex-row gap-8 p-5 justify-between mx-auto">
+    <section className="flex flex-col md:flex-row max-w-7xl gap-8 p-5 justify-between mx-auto">
       <aside className="w-full md:w-2/12">
-        <Tabsbar tabs={categories} />
+        <Tabsbar tabs={categories} onChange={changeHandler} checked={checked} />
       </aside>
       <aside className="w-full md:w-10/12">
-        <ListProduct title="Electronics" products={PRODUCTS} />
+        <ListProduct
+          title={checked}
+          products={filterProduct}
+          isLoading={isLoading}
+        />
+        {filter !== '' && filterProduct.length == 0 && (
+          <div className="text text-col text-center space-y-3">
+            <h3 className="text-lg font-semibold">
+              No products found with{' '}
+              <span className="font-bold text-primary">{filter}</span>
+            </h3>
+            <p>Try another keyword</p>
+          </div>
+        )}
       </aside>
     </section>
   );

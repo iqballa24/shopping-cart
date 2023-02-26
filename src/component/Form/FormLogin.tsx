@@ -11,13 +11,18 @@ export type LoginProps = {
 const FormLogin: React.FC<{
   submitHandler: (data: LoginProps) => void;
 }> = ({ submitHandler }) => {
-  const { handleSubmit, control, formState } = useForm<FormValue>({
+  const { handleSubmit, control, formState, setValue } = useForm<FormValue>({
     defaultValues: {
       username: '',
       password: '',
     },
     mode: 'onChange',
   });
+
+  const guestHandler = () => {
+    setValue('username', import.meta.env.VITE_USERNAME_GUEST);
+    setValue('password', import.meta.env.VITE_PASSWORD_GUEST);
+  };
 
   return (
     <form className="flex flex-col space-y-7">
@@ -46,11 +51,6 @@ const FormLogin: React.FC<{
           name: 'password',
           rules: {
             required: 'Password field is required',
-            pattern: {
-              value: /^(?=.*[A-Z])[\w@$!%*?&]{3,10}$/g,
-              message:
-                'Password must be 3 and not more than 10 characters and contain at least one capital letter',
-            },
           },
         }}
       />
@@ -61,8 +61,14 @@ const FormLogin: React.FC<{
         isFull
         onClick={handleSubmit(submitHandler)}
       >
-        {formState.isSubmitting ? 'Loading...' : 'Register'}
+        {formState.isSubmitting ? 'Loading...' : 'Login'}
       </Button>
+      <p
+        className="text-xs text-center hover:underline cursor-pointer hover:text-primary-light/60"
+        onClick={guestHandler}
+      >
+        Continue as a guest
+      </p>
     </form>
   );
 };

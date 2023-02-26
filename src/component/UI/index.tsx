@@ -1,11 +1,23 @@
-import React from 'react';
+import AvatarImage from '@/component/UI/AvatarImage';
+import Button from '@/component/UI/Button';
+import CardsSkeleton from '@/component/UI/Skeleton/CardsSkeleton';
+import Counter from '@/component/UI/Counter';
+import Input from '@/component/UI/Input';
+import Loader from '@/component/UI/Loader';
+import Searchbar from '@/component/UI/Searchbar';
+import Tabsbar from '@/component/UI/Tabsbar';
+import Tag from '@/component/UI/Tag';
+import TitleText from '@/component/UI/TitleText';
 
-const AvatarImage = React.lazy(() => import('@/component/UI/AvatarImage'));
-const Button = React.lazy(() => import('@/component/UI/Button'));
-const Counter = React.lazy(() => import('@/component/UI/Counter'));
-const Input = React.lazy(() => import('@/component/UI/Input'));
-const Searchbar = React.lazy(() => import('@/component/UI/Searchbar'));
-const Tabsbar = React.lazy(() => import('@/component/UI/Tabsbar'));
-const Tag = React.lazy(() => import('@/component/UI/Tag'));
-
-export { AvatarImage, Button, Counter, Input, Searchbar, Tabsbar, Tag };
+export {
+  AvatarImage,
+  Button,
+  CardsSkeleton,
+  Counter,
+  Input,
+  Loader,
+  Searchbar,
+  Tabsbar,
+  Tag,
+  TitleText
+};

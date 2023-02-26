@@ -3,9 +3,11 @@ import React from 'react';
 
 type Props = {
   tabs: Tab[];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  checked: string
 };
 
-const Tabsbar: React.FC<Props> = ({ tabs }) => {
+const Tabsbar: React.FC<Props> = ({ tabs, onChange, checked }) => {
   return (
     <ul className="flex flex-row flex-wrap md:flex-col gap-3 items-stretch m-0 bg-white p-5">
       {tabs.map((tab) => (
@@ -20,6 +22,8 @@ const Tabsbar: React.FC<Props> = ({ tabs }) => {
             name="tabsbar"
             id={`tab-${tab.id}`}
             value={tab.value}
+            checked={checked === tab.value}
+            onChange={onChange}
             className="hidden peer/tab"
           />
           <label
@@ -28,7 +32,7 @@ const Tabsbar: React.FC<Props> = ({ tabs }) => {
           >
             <tab.icon />
             <p className="block md:hidden lg:block whitespace-nowrap truncate">
-              {tab.value}
+              {tab.label}
             </p>
           </label>
         </li>

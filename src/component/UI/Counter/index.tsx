@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
-const Counter = () => {
-  const [counter, setCounter] = useState(1);
-
+const Counter: React.FC<{
+  value: number;
+  increaseHandler: () => void;
+  decreaseHandler: () => void;
+}> = ({ value, increaseHandler, decreaseHandler }) => {
   const incrementCounter = () => {
-    setCounter((prev) => prev + 1);
+    increaseHandler();
   };
 
   const decrementCounter = () => {
-    setCounter((prev) => (prev === 1 ? 1 : prev - 1));
+    decreaseHandler();
   };
 
   return (
@@ -21,7 +23,7 @@ const Counter = () => {
       >
         <AiOutlineMinus />
       </button>
-      <p className="text-base font-bold">{counter}</p>
+      <p className="text-base font-bold">{value}</p>
       <button
         type="button"
         className="text-primary cursor-pointer p-2 hover:bg-background rounded-md"

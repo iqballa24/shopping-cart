@@ -1,14 +1,5 @@
 import { IconType } from 'react-icons';
 
-export type Product = {
-  id: number;
-  title: string;
-  rating: number;
-  totalSold: number;
-  price: number;
-  isAddToCart: boolean;
-};
-
 export type Menus = {
   id: number;
   name: string;
@@ -19,6 +10,7 @@ export type Menus = {
 export type Tab = {
   id: number;
   value: string;
+  label: string;
   icon: IconType;
 };
 
@@ -27,4 +19,26 @@ export type FormValue = {
   username: string;
   password: string;
   name: string;
+};
+
+export type ItemProduct = {
+  category: string;
+  description: string;
+  id: string;
+  image: string;
+  price: number;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  title: string;
+  hasAddToCart: boolean;
+  amount?: number;
+};
+
+export type Cart = {
+  id: string;
+  image: string;
+  title: string;
+  price: number;
 };

@@ -6,27 +6,32 @@ import { BsGenderMale, BsGenderFemale } from 'react-icons/bs';
 const categories: Tab[] = [
   {
     id: 1,
-    value: 'All',
+    label: 'All',
+    value: "all",
     icon: AiOutlineHome,
   },
   {
     id: 2,
-    value: 'Electronics',
+    label: 'Electronics',
+    value: "electronics",
     icon: GiElectric,
   },
   {
     id: 3,
-    value: 'Jewelry',
+    label: 'Jewelry',
+    value: "jewelery",
     icon: GiJewelCrown,
   },
   {
     id: 4,
-    value: 'Men`s Clothing',
+    label: 'Men`s Clothing',
+    value: "men's clothing",
     icon: BsGenderMale,
   },
   {
     id: 5,
-    value: 'Women`s Clothing',
+    label: 'Women`s Clothing',
+    value: "women's clothing",
     icon: BsGenderFemale,
   },
 ];

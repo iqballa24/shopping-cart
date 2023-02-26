@@ -12,7 +12,7 @@ const AvatarImage: React.FC<{ name: string; size: number }> = ({
         width={'fit-content'}
         className={`rounded-full`}
       />
-      <p className='hidden md:block text-sm lg:text-base truncate'>Tengku Iqbal Nugraha</p>
+      <p className="hidden md:block text-sm lg:text-base truncate">{name}</p>
     </div>
   );
 };

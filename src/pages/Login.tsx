@@ -2,14 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import FormLogin, { LoginProps } from '@/component/Form/FormLogin';
+import { useAppDispatch } from '@/lib/hooks/useRedux';
+import { asyncLogin } from '@/store/auth/action';
 
 const Login = () => {
-  const submitHandler = async(data: LoginProps) => {
+  const dispatch = useAppDispatch();
+
+  const submitHandler = async (data: LoginProps) => {
     const { username, password } = data;
+    await dispatch(asyncLogin(username, password));
   };
 
   return (
-    <section className="flex flex-col p-5 fixed top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 w-full max-w-lg space-y-10">
+    <section className="flex flex-col p-5 w-full h-full max-w-lg space-y-10 mx-auto my-auto mt-28">
       <div className="flex flex-row items-center justify-center md:space-x-3">
         <img
           src="/logo.svg"
@@ -17,16 +22,7 @@ const Login = () => {
           className="w-full max-w-[140px]"
         />
       </div>
-      <FormLogin submitHandler={submitHandler}/>
-      <div className="space-y-5 text-center">
-        <hr />
-        <p className="text-text font-light text-sm">
-          Dont have an account ?{' '}
-          <Link to="register" className="text-blue-400 hover:underline">
-            Register now.
-          </Link>
-        </p>
-      </div>
+      <FormLogin submitHandler={submitHandler} />
     </section>
   );
 };
