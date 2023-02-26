@@ -1,17 +1,20 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { AiOutlineLogout, AiOutlineShop } from 'react-icons/ai';
-import { BiCartAlt } from 'react-icons/bi';
+import { BiCartAlt, BiCategory } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { AvatarImage, Button, Searchbar } from '@/component/UI';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks/useRedux';
 import { asyncLogout } from '@/store/auth/action';
 import { productSliceAction } from '@/store/products';
+import Modal from '@/component/UI/Modal';
+import categories from '@/constant/categories';
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const filterCategory = useRef('');
+  const [showModal, setShowModal] = useState(false);
   const { auth, carts } = useAppSelector((state) => state.persist);
   const { username, isLoggedIn } = auth;
 
@@ -28,6 +31,12 @@ const Header = () => {
     navigate('/store');
   };
 
+  const clickCategoryHandler = (category: string) => {
+    dispatch(productSliceAction.setCategory(category));
+    navigate('/store');
+    setShowModal(false);
+  };
+
   return (
     <header className="w-full flex flex-col gap-3 py-5 px-5 md:px-10 bg-white text-text">
       <Link to="/" className="md:hidden w-[120px] mx-auto">
@@ -42,6 +51,16 @@ const Header = () => {
             changeHandler={changeHandler}
             enterHandler={enterHandler}
           />
+          <button
+            type="button"
+            className="flex flex-row gap-2 items-center cursor-pointer hover:text-primary"
+            data-tooltip-id="tooltip"
+            data-tooltip-content="Categories"
+            onClick={() => setShowModal(true)}
+          >
+            <BiCategory size={20} />
+            <span className="text-sm hidden lg:block">Categories</span>
+          </button>
           <Link
             to="/store"
             className="flex flex-row gap-2 items-center cursor-pointer hover:text-primary"
@@ -103,6 +122,24 @@ const Header = () => {
           )}
         </div>
       </div>
+      <Modal
+        title="Categories"
+        isShow={showModal}
+        onClose={() => setShowModal(false)}
+      >
+        <ul className="flex flex-row gap-3 flex-wrap mt-5">
+          {categories.map((category) => (
+            <li
+              key={category.id}
+              className="flex-1 bg-white border py-5 px-10 rounded-md flex flex-row items-center gap-3 hover:border-primary cursor-pointer"
+              onClick={() => clickCategoryHandler(category.value)}
+            >
+              <category.icon />
+              <span className="whitespace-nowrap ">{category.label}</span>
+            </li>
+          ))}
+        </ul>
+      </Modal>
     </header>
   );
 };

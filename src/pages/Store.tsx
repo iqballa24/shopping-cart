@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import categories from '@/constant/categories';
 import ListProduct from '@/component/ListProduct';
@@ -11,6 +11,10 @@ const Store = () => {
     (state) => state.product
   );
   const [checked, setChecked] = useState(category === '' ? 'all' : category);
+
+  useEffect(() => {
+    setChecked(category === '' ? 'all' : category);
+  }, [category]);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.value);

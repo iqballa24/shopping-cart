@@ -23,12 +23,12 @@ const Product = () => {
     }
   }, [id]);
 
-  const addItemToCart = ({ id, title, price }: Cart) => {
+  const addItemToCart = ({ id, title, price, image }: Cart) => {
     if (!isLoggedIn) {
       toast.error('You are not logged in. Login first!');
       return;
     }
-    dispatch(cartSliceAction.addItemToCart({ id, title, price }));
+    dispatch(cartSliceAction.addItemToCart({ id, title, price, image }));
     dispatch(productSliceAction.productAddToCart(id));
   };
 

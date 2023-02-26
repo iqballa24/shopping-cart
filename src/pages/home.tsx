@@ -4,7 +4,6 @@ import categories from '@/constant/categories';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks/useRedux';
 import { ItemProduct } from '@/types';
-import { TitleText } from '@/component/UI';
 import { productSliceAction } from '@/store/products';
 
 const Home = () => {
@@ -25,12 +24,11 @@ const Home = () => {
 
   return (
     <section className="flex flex-col p-5 gap-10">
-      <TitleText text="Category" />
-      <ul className="flex flex-row gap-5 flex-wrap">
+      <ul className="flex flex-row gap-3 flex-wrap">
         {categories.map((category) => (
           <li
             key={category.id}
-            className="w-fit bg-white border p-3 md:py-5 md:px-10 rounded-md flex flex-row items-center gap-3 hover:border-primary cursor-pointer"
+            className="flex-1 bg-white border py-5 px-10 rounded-md flex flex-row items-center gap-3 hover:border-primary cursor-pointer"
             onClick={() => clickCategoryHandler(category.value)}
           >
             <category.icon />

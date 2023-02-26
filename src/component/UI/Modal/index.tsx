@@ -5,11 +5,11 @@ import { MdClose } from 'react-icons/md';
 type ModalProps = {
   title: string;
   isShow: boolean;
-  content: React.ReactNode;
+  children: React.ReactNode;
   onClose: () => void;
 };
 
-const Modal: React.FC<ModalProps> = ({ title, onClose, isShow, content }) => {
+const Modal: React.FC<ModalProps> = ({ title, onClose, isShow, children }) => {
   return (
     <Transition appear show={isShow} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -53,7 +53,7 @@ const Modal: React.FC<ModalProps> = ({ title, onClose, isShow, content }) => {
                     />
                   </button>
                 </Dialog.Title>
-                {content}
+                {children}
               </Dialog.Panel>
             </Transition.Child>
           </div>

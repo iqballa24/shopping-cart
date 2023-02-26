@@ -44,7 +44,7 @@ const DetailProduct: React.FC<Props> = ({
       const amount = item.filter((product) => product.id === id)[0]?.amount || 0;
       setAmount(amount);
     }
-  }, [hasAddToCart, totalItem]);
+  }, [hasAddToCart, id, totalItem]);
 
   const increaseHandler = () => {
     dispatch(cartSliceAction.increaseItemCart(id));

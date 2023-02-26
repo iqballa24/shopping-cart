@@ -6,6 +6,7 @@ const Cart = () => {
   const { item: Carts, totalItem } = useAppSelector(
     (state) => state.persist.carts
   );
+
   return (
     <section className="flex flex-col md:flex-row max-w-6xl mx-auto gap-10 p-5">
       <div className="w-full md:w-8/12 flex flex-col gap-5">
