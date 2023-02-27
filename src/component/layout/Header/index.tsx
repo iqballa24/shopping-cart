@@ -23,8 +23,8 @@ const Header = () => {
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(productSliceAction.setFilter(filterCategory.current));
     filterCategory.current = e.target.value;
+    dispatch(productSliceAction.setFilter(filterCategory.current));
   };
 
   const enterHandler = () => {
