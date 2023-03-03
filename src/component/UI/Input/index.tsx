@@ -34,7 +34,7 @@ const Input: React.FC<Props> = ({ label, form, placeholder, type }) => {
       />
       {type === 'password' && (
         <div
-          className="absolute top-11 -translate-y-2/4 right-2 p-2 md:p-3 rounded-md cursor-pointer hover:text-cyan "
+          className="absolute top-12 -translate-y-2/4 right-2 p-2 md:p-3 rounded-md cursor-pointer hover:text-cyan "
           onClick={toggleShowPassword}
         >
           {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}

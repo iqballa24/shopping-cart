@@ -20,6 +20,8 @@ export const addItemToCartAction = ({ id, title, price, image }: Cart) => {
 
     const { carts } = getState().persist;
 
+    console.log(carts)
+
     const totalPrice = carts.item
       .map((cart) => cart.amount! * cart.price)
       .reduce((curr, prev) => curr + prev);

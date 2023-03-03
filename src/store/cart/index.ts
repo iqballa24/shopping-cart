@@ -64,6 +64,11 @@ const cartSlice = createSlice({
     receiveTotalPrice(state, { payload }) {
       state.totalPrice = payload;
     },
+    resetToInitialState(state) {
+      state.item = [];
+      state.totalItem = 0;
+      state.totalPrice = 0;
+    },
   },
 });
 

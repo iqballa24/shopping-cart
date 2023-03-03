@@ -8,7 +8,7 @@ const getProducts = async () => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log(error);
-      throw new Error(error.response?.data);
+      throw new Error(error.message);
     } else {
       console.error(error);
     }
@@ -22,7 +22,7 @@ const getDetailProduct = async (id: string) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log(error);
-      throw new Error(error.response?.data);
+      throw new Error(error.message);
     } else {
       console.error(error);
     }
@@ -35,7 +35,7 @@ const login = async (username: string, password: string) => {
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data);
+      throw new Error(error.message);
     } else {
       console.error(error);
     }
