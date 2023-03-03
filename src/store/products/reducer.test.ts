@@ -61,7 +61,7 @@ describe('productSlice reducer', () => {
 
     // assert
     expect(state.data).toEqual([fakeProduct]);
-    expect(state.data).toHaveLength(1);
+    expect(state.data).toHaveLength(2);
   });
 
   it('should change loading state when given toggleLoading action', () => {
