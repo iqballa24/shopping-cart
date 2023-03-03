@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "jest --watchAll",
+    "ci:test": "jest --watchAll=false",
     "lint": "eslint ./src",
     "commit": "git-cz",
     "postinstall": "husky install"
