@@ -3,7 +3,7 @@
 </p>
 
 ## Tokopaedi
-<p>Tokopaedi is a simple web e-commerce using Fake store rest API. You see all product and add item to cart</p>
+<p>Tokopaedi is a simple web e-commerce using Fake store rest API. You can see all product and add item to cart</p>
 
 ## Table of contents
 
@@ -26,19 +26,19 @@ Users should be able to:
 - [x] See all product
 - [x] See all product by category
 - [x] See detail product
-- [x] Remove item to cart
+- [x] Remove item from cart
 - [x] Increase item cart
 - [x] Decrease item cart
 - [x] Filter product by category
 - [x] Filter product by search
-- [x] See cart
+- [x] See list of cart
 - [x] Logout
 
 ### Screenshot
 
-![image](https://user-images.githubusercontent.com/57162533/221392908-8f109787-7cae-4387-8b34-d804e645213c.png)
-![image](https://user-images.githubusercontent.com/57162533/221392899-eb58b24a-e0a0-4a48-a6af-1e1d2027d20a.png)
-![image](https://user-images.githubusercontent.com/57162533/221392995-803e1613-9c70-4b1f-84e1-fa83e68fa9fe.png)
+![image](https://user-images.githubusercontent.com/57162533/222891670-69dd2b15-34a1-4dc5-b97c-5ef9f6d69818.png)
+![image](https://user-images.githubusercontent.com/57162533/222891727-0339abe4-238a-4d71-addb-b09a5a06bbf2.png)
+![image](https://user-images.githubusercontent.com/57162533/222891785-aa0e3e05-1479-4e06-a9d9-1371b6ef3b9d.png)
 
 
 ### Links
