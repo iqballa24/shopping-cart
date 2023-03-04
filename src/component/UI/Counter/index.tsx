@@ -17,6 +17,8 @@ const Counter: React.FC<{
   return (
     <div className="flex flex-row justify-between items-center gap-3 w-full border border-text/20 p-1 rounded">
       <button
+        name="button_decrement"
+        title="button_decrement"
         type="button"
         className="text-primary cursor-pointer p-2 hover:bg-background rounded-md"
         onClick={decrementCounter}
@@ -25,6 +27,8 @@ const Counter: React.FC<{
       </button>
       <p className="text-base font-bold">{value}</p>
       <button
+        name="button_increment"
+        title="button_increment"
         type="button"
         className="text-primary cursor-pointer p-2 hover:bg-background rounded-md"
         onClick={incrementCounter}
