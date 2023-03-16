@@ -58,6 +58,7 @@ Users should be able to:
 - Headless UI
 - Redux
 - API Fakestore [Fakestore API](https://fakestoreapi.com/docs);
+- Jest (for testing)
 
 ## Author
 
