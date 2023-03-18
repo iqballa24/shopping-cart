@@ -34,8 +34,9 @@ const login = async (username: string, password: string) => {
     const res = await API.post('auth/login', { username, password });
     return res;
   } catch (error) {
+    console.log(error)
     if (axios.isAxiosError(error)) {
-      throw new Error(error.message);
+      throw new Error(error.response?.data);
     } else {
       console.error(error);
     }
