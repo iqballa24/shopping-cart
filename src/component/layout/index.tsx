@@ -17,7 +17,7 @@ const Layout = () => {
 
   return (
     <React.Fragment>
-      <LoadingBar className="absolute !bg-primary h-1" />
+      <LoadingBar className="absolute !bg-primary h-[2px]" />
       <Header />
       <main className="overflow-y-scroll min-h-screen pt-5 pb-48 lg:px-10">
         <Outlet />
