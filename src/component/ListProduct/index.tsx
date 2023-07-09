@@ -16,7 +16,7 @@ const ListProduct: React.FC<{
       ) : (
         <TitleText text={title} />
       )}
-      <div className="flex flex-row justify-center items-stretch md:justify-start flex-wrap gap-3">
+      <div className="flex flex-row justify-center md:justify-between flex-wrap gap-3">
         {products.map((product) => (
           <ProductItem
             key={product.id}
