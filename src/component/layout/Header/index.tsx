@@ -43,7 +43,7 @@ const Header = () => {
         <Link to="/" className="md:hidden w-[120px] mx-auto">
           <img src="/logo.svg" alt="" />
         </Link>
-        <div className="flex flex-row gap-5 justify-center md:justify-between">
+        <div className="w-full max-w-7xl mx-auto flex flex-row gap-5 justify-center md:justify-between">
           <div className="flex flex-row gap-5 items-center">
             <Link to="/" className="m-0 p-0">
               <img src="/logo.svg" alt="" className="hidden md:block" />
