@@ -9,7 +9,10 @@ import {
 import { Cart } from '@/types';
 import { Button } from '@/component/UI';
 import { useAppDispatch } from '@/lib/hooks/useRedux';
-import { addItemToCartAction, removeItemFromCartAction } from '@/store/shared/action';
+import {
+  addItemToCartAction,
+  removeItemFromCartAction,
+} from '@/store/shared/action';
 
 type Props = {
   id: string;
@@ -42,9 +45,11 @@ const ProductItem: React.FC<Props> = ({
 
   return (
     <div className="w-full flex flex-col rounded-md border overflow-hidden hover:ring-1 hover:ring-primary transition duration-300 ease-in-out">
-      <div className="p-10 bg-white ">
-        <img src={image} alt="" className="w-full h-36 object-scale-down" />
-      </div>
+      <Link to={`/store/product/${id}`}>
+        <div className="p-10 bg-white ">
+          <img src={image} alt="" className="w-full h-36 object-scale-down" />
+        </div>
+      </Link>
       <div className="flex flex-col h-full justify-between gap-2 p-4">
         <Link
           to={`/store/product/${id}`}
