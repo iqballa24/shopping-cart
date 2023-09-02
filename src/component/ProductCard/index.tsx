@@ -41,7 +41,7 @@ const ProductItem: React.FC<Props> = ({
   };
 
   return (
-    <div className="w-full sm:max-w-[210px] flex flex-col rounded-md border overflow-hidden hover:ring-1 hover:ring-primary transition duration-300 ease-in-out">
+    <div className="w-full flex flex-col rounded-md border overflow-hidden hover:ring-1 hover:ring-primary transition duration-300 ease-in-out">
       <div className="p-10 bg-white ">
         <img src={image} alt="" className="w-full h-36 object-scale-down" />
       </div>

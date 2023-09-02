@@ -8,7 +8,8 @@ const ListProduct: React.FC<{
   title: string;
   products: ItemProduct[];
   isLoading: boolean;
-}> = ({ title, products, isLoading }) => {
+  className: string;
+}> = ({ title, products, isLoading, className }) => {
   return (
     <div className="flex flex-col gap-6">
       {isLoading ? (
@@ -16,7 +17,7 @@ const ListProduct: React.FC<{
       ) : (
         <TitleText text={title} />
       )}
-      <div className="flex flex-row justify-center md:justify-between flex-wrap gap-3">
+      <div className={className}>
         {products.map((product) => (
           <ProductItem
             key={product.id}

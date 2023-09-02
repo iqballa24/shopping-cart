@@ -19,7 +19,7 @@ const Layout = () => {
     <React.Fragment>
       <LoadingBar className="absolute !bg-primary h-[2px]" />
       <Header />
-      <main className="overflow-y-scroll min-h-screen pt-5 pb-48 lg:px-10">
+      <main className="overflow-y-scroll min-h-screen pt-5 pb-48 lg:px-10 scrollbar-hide">
         <Outlet />
         <section className="fixed md:hidden bg-white w-full left-0 right-0 bottom-0 z-10">
           <BottomBar />

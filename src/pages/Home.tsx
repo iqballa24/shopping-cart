@@ -23,7 +23,7 @@ const Home = () => {
   };
 
   return (
-    <section className="flex flex-col p-5 gap-10">
+    <section className="flex flex-col p-5 gap-10 max-w-7xl mx-auto">
       <ul className="flex flex-row gap-3 flex-wrap">
         {categories.map((category) => (
           <li
@@ -38,8 +38,9 @@ const Home = () => {
       </ul>
       <ListProduct
         title="Popular"
-        products={POPULAR_PRODUCTS.slice(0, 6)}
+        products={POPULAR_PRODUCTS.slice(0, 5)}
         isLoading={isLoading}
+        className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-3"
       />
     </section>
   );

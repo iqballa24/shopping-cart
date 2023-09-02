@@ -39,6 +39,7 @@ const Store = () => {
           title={checked}
           products={filterProduct}
           isLoading={isLoading}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3"
         />
         {filter !== '' && filterProduct.length == 0 && (
           <div className="text text-col text-center space-y-3">
