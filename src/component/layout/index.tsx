@@ -5,15 +5,28 @@ import LoadingBar from 'react-redux-loading-bar';
 import BottomBar from '@/component/layout/BottomBar';
 import Header from '@/component/layout/Header';
 
-import { useAppDispatch } from '@/lib/hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks/useRedux';
 import { asyncGetProducts } from '@/store/products/action';
+import { useLocation, useNavigate } from 'react-router-dom';
+import menus from '@/constant/menus';
 
 const Layout = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const currentPath = useLocation().pathname;
+  const isLoggedIn = useAppSelector((state) => state.persist.auth.isLoggedIn);
+  const restrictedMenu = menus
+    .filter((item) => item.restrictedAuth)
+    .map((item) => item.path);
 
   useEffect(() => {
     dispatch(asyncGetProducts());
   }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn && restrictedMenu.includes(currentPath))
+      return navigate('/');
+  }, [isLoggedIn, currentPath]);
 
   return (
     <React.Fragment>

@@ -8,10 +8,10 @@ function InlineWrapperWithMargin({ children }: PropsWithChildren<unknown>) {
 const CardsSkeleton = () => {
   return (
     <Skeleton
-      width={220}
       height={300}
-      count={6}
+      count={5}
       wrapper={InlineWrapperWithMargin}
+      containerClassName="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-3"
       inline
     />
   );

@@ -1,10 +1,11 @@
 import { IconType } from 'react-icons';
 
-export type Menus = {
+export type Menu = {
   id: number;
   name: string;
   icon: IconType;
   path: string;
+  restrictedAuth: boolean;
 };
 
 export type Tab = {
