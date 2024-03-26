@@ -6,6 +6,12 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks/useRedux';
 import { ItemProduct } from '@/types';
 import { productSliceAction } from '@/store/products';
 
+declare global {
+  interface Window {
+    dataLayer: any;
+  }
+}
+
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
