@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ListProduct from '@/component/ListProduct';
 import categories from '@/constant/categories';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +21,26 @@ const Home = () => {
     dispatch(productSliceAction.setCategory(category));
     navigate('/store');
   };
+
+  useEffect(() => {
+    window.dataLayer.push({
+      event: 'view_item_list',
+      ecommerce: {
+        currency: 'IDR',
+        currencyCode: 'IDR',
+        items: [
+          {
+            index: 1,
+            item_id: 1,
+            item_name: 'Adidas jumbo',
+            item_brand: 'Adidas',
+            item_category: 'Our top picks',
+            price: 1200000,
+          },
+        ],
+      },
+    });
+  }, []);
 
   return (
     <section className="flex flex-col p-5 gap-10 max-w-7xl mx-auto">
